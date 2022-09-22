@@ -1,0 +1,41 @@
+CREATE TABLE teachers(
+  teacher_id SERIAL NOT NULL PRIMARY KEY,
+  teacher_fname VARCHAR(30) NOT NULL,
+  teacher_lname VARCHAR(30)
+);
+INSERT INTO teachers (teacher_fname, teacher_lname) 
+VALUES('Emma', 'Watsons');
+
+CREATE TABLE class(
+	class_id SERIAL NOT NULL PRIMARY KEY,
+	teacher_id INT REFERENCES teachers(teacher_id),
+	class_title VARCHAR(30),
+	class_description VARCHAR(50)
+);
+
+INSERT INTO class(teacher_id, class_title, class_description)
+VALUES(1, 'Biology', 'Study of life');
+
+CREATE TABLE students(
+  student_id SERIAL NOT NULL PRIMARY KEY,
+  student_fname VARCHAR(30) NOT NULL,
+  student_lname VARCHAR(30)
+);
+
+INSERT INTO students(student_fname, student_lname) 
+VALUES('Patty', 'Rivera'), 
+('Mike', 'Wazowski');
+
+CREATE TABLE student_enrolled(
+	studentEnrolled_id SERIAL NOT NULL PRIMARY KEY,
+	class_id INT REFERENCES class(class_id) NOT NULL,
+	student_id INT REFERENCES students(student_id) NOT NULL
+);
+
+INSERT INTO student_enrolled(class_id, student_id)
+VALUES(1,1);
+
+SELECT * FROM teachers;
+SELECT * FROM class;
+SELECT * FROM students;
+SELECT * FROM student_enrolled;

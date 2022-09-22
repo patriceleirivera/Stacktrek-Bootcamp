@@ -1,0 +1,24 @@
+CREATE TABLE costumer(
+  costumer_id SERIAL NOT NULL PRIMARY KEY,
+  costumer_fname VARCHAR(30) NOT NULL,
+  costumer_lname VARCHAR(30)
+);
+INSERT INTO costumer (costumer_fname, costumer_lname) 
+VALUES('Patty', 'Rivera');
+
+CREATE TABLE pet(
+  pet_id SERIAL NOT NULL PRIMARY KEY,
+  costumer_id INT REFERENCES costumer(costumer_id),
+  pet_name VARCHAR(30),
+  pet_species VARCHAR(30) NOT NULL,
+  pet_breed VARCHAR(30),
+  pet_birthdate TIMESTAMP
+);
+
+
+INSERT INTO pet (costumer_id, pet_name, pet_species, pet_breed)
+VALUES (1,'Chapo', 'Dog', 'Toy poodle');
+
+
+SELECT * FROM costumer;
+SELECT * FROM pet;

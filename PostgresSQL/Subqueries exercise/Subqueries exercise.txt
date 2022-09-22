@@ -1,0 +1,26 @@
+
+CREATE TABLE employee(
+  fname VARCHAR(30) NOT NULL,
+  lname VARCHAR(30) NOT NULL,
+  salary NUMERIC(10,2)
+);
+
+INSERT INTO employee(fname, lname, salary)
+VALUES('Tj', 'Olson', 50000),
+('Steven', 'Markle', 30000),
+('Jake', 'The Dog', 3002),
+('Jake', 'The Dog', 3002),
+('Fin', 'The Human', 300002),
+('Alexander', 'The great', 320),
+('Son', 'Goku', 30000),
+('Tj', 'Olsones', 4550000),
+('Steven', 'Markleses', 530000),
+('Jake', 'The Dog 4', 300222),
+('Jake', 'The Dof 3', 3002);
+
+/* without subquery */
+SELECT fname, lname, salary FROM employee WHERE salary < 300222
+
+/* with subquery */
+SELECT fname, lname, salary FROM employee WHERE salary <
+(SELECT MAX(salary) FROM employee WHERE fname = 'Jake')
